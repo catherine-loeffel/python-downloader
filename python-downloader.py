@@ -1,5 +1,6 @@
 from sys import argv
 import urllib
+import mimetypes
 
 # default constants
 outputFolder = './output/'
@@ -8,6 +9,12 @@ inputFile = 'examplelinks.txt'
 # read file from argument or keeping default
 if len(argv) == 2:
     inputFile = argv[1]
+
+# tests if provided file is a text file
+if mimetypes.guess_type(inputFile)[0] != 'text/plain':
+    print 'File is not a valid text file'
+    exit()
+
 print 'Running Python Downloader...'
 
 try:
